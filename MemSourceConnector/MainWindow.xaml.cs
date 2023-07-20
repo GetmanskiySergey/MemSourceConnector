@@ -365,11 +365,13 @@ namespace MemSourceConnector
 
         private void BnSelectOutputDir_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new System.Windows.Forms.FolderBrowserDialog();
+            var dlg = new Ookii.Dialogs.Wpf.VistaFolderBrowserDialog();
+            dlg.SelectedPath = OutputDir ?? Directory.GetCurrentDirectory();
+            //var dlg = new System.Windows.Forms.FolderBrowserDialog();
 
             var result = dlg.ShowDialog();
 
-            if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(dlg.SelectedPath))
+            if (result == true && !string.IsNullOrWhiteSpace(dlg.SelectedPath))
             {
                 OutputDir = dlg.SelectedPath;
                 DoPropertyChanged(nameof(OutputDir));
